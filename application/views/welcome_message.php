@@ -1,0 +1,277 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Undangan Wisuda - Susi Zahara</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		.bg-gradient-custom {
+			background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+		}
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(20px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+		@keyframes float {
+			0%, 100% { transform: translateY(0px); }
+			50% { transform: translateY(-10px); }
+		}
+		@keyframes slideInLeft {
+			from { opacity: 0; transform: translateX(-50px); }
+			to { opacity: 1; transform: translateX(0); }
+		}
+		@keyframes slideInRight {
+			from { opacity: 0; transform: translateX(50px); }
+			to { opacity: 1; transform: translateX(0); }
+		}
+		@keyframes pulse {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.05); }
+		}
+		.fade-in {
+			animation: fadeIn 1s ease-out forwards;
+		}
+		.float {
+			animation: float 3s ease-in-out infinite;
+		}
+		.slide-in-left {
+			animation: slideInLeft 1s ease-out forwards;
+		}
+		.slide-in-right {
+			animation: slideInRight 1s ease-out forwards;
+		}
+		.pulse {
+			animation: pulse 2s ease-in-out infinite;
+		}
+		.particle {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background: rgba(255, 192, 203, 0.3);
+			border-radius: 50%;
+			animation: float 4s ease-in-out infinite;
+		}
+		.particle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+		.particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 1s; }
+		.particle:nth-child(3) { top: 70%; left: 20%; animation-delay: 2s; }
+		.particle:nth-child(4) { top: 80%; left: 90%; animation-delay: 3s; }
+		.cover {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 10;
+			transition: opacity 1s ease-out, transform 1s ease-out;
+		}
+		.cover.hidden {
+			opacity: 0;
+			transform: scale(0.9);
+			pointer-events: none;
+		}
+		.invitation-content {
+			opacity: 0;
+			transform: scale(0.9);
+			transition: opacity 1s ease-out, transform 1s ease-out;
+		}
+		.invitation-content.show {
+			opacity: 1;
+			transform: scale(1);
+		}
+		.animate-on-scroll {
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+		}
+		.animate-on-scroll.in-view {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.countdown-item {
+			background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+			border-radius: 10px;
+			padding: 20px;
+			text-align: center;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+		.photo-gallery img {
+			transition: transform 0.3s ease;
+		}
+		.photo-gallery img:hover {
+			transform: scale(1.05);
+		}
+	</style>
+</head>
+<body class="bg-gradient-custom min-h-screen p-4 relative overflow-auto">
+	<!-- Particles -->
+	<div class="particle"></div>
+	<div class="particle"></div>
+	<div class="particle"></div>
+	<div class="particle"></div>
+
+	<!-- Cover Page -->
+	<div id="cover" class="cover">
+		<div class="text-center text-white">
+			<div class="mb-8">
+				<h1 class="text-5xl font-bold mb-4 drop-shadow-lg">Undangan Wisuda</h1>
+				<p class="text-2xl drop-shadow-md">Klik untuk membuka</p>
+			</div>
+			<button id="openBtn" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full text-xl transition duration-300 transform hover:scale-105 shadow-lg">
+				Buka Undangan
+			</button>
+		</div>
+	</div>
+
+	<!-- Main Content -->
+	<div id="invitation" class="invitation-content max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden mt-8 mb-8">
+		<!-- Header -->
+		<div class="bg-pink-500 text-white text-center py-8 float animate-on-scroll">
+			<h1 class="text-4xl font-bold mb-2">Undangan Wisuda</h1>
+			<p class="text-xl">Dengan hormat mengundang Anda untuk menghadiri</p>
+		</div>
+
+		<!-- Content -->
+		<div class="p-8 text-center">
+			<!-- Photo Section -->
+			<div class="mb-8 animate-on-scroll">
+				<div class="relative inline-block">
+					<img src="Susi1.jpeg" alt="Foto Susi" class="w-56 h-56 rounded-full object-cover border-4 border-pink-300 shadow-lg pulse">
+					<div class="absolute inset-0 rounded-full border-4 border-pink-500 animate-ping"></div>
+				</div>
+				<h2 class="text-3xl font-semibold text-gray-800 mt-4 mb-4">Wisuda SUSI ZAHARA S.Si</h2>
+				<p class="text-lg text-gray-600 mb-2">Program Studi Fisika</p>
+				<p class="text-lg text-gray-600">Universitas Negeri Andalas</p>
+			</div>
+
+			<!-- Countdown Timer -->
+			<div class="mb-8 animate-on-scroll">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-6">Hitung Mundur Wisuda</h3>
+				<div class="grid grid-cols-4 gap-4 max-w-lg mx-auto" id="countdown">
+					<div class="countdown-item">
+						<div class="text-3xl font-bold text-black text-center" id="days">00</div>
+						<div class="text-sm text-black-100 text-center">Hari</div>
+					</div>
+					<div class="countdown-item">
+						<div class="text-3xl font-bold text-black text-center" id="hours">00</div>
+						<div class="text-sm text-black-100 text-center">Jam</div>
+					</div>
+					<div class="countdown-item">
+						<div class="text-3xl font-bold text-black text-center" id="minutes">00</div>
+						<div class="text-sm text-black-100 text-center">Menit</div>
+					</div>
+					<div class="countdown-item">
+						<div class="text-3xl font-bold text-black text-center" id="seconds">00</div>
+						<div class="text-sm text-black-100 text-center">Detik</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-6 mb-8">
+				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
+					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tanggal</h3>
+					<p class="text-gray-600">22 November 2025</p>
+				</div>
+				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-right">
+					<h3 class="text-xl font-semibold text-gray-800 mb-2">Waktu</h3>
+					<p class="text-gray-600">13.00 - 16.00</p>
+				</div>
+				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
+					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tempat</h3>
+					<p class="text-gray-600">FMIPA</p>
+				</div>
+			</div>
+
+			<!-- Photo Gallery -->
+			<div class="mb-8 animate-on-scroll">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-6">Galeri Kenangan</h3>
+				<div class="grid grid-cols-2 md:grid-cols-3 gap-4 photo-gallery">
+					<img src="Susi1.jpeg" alt="Kenangan 1" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi6.jpeg" alt="Kenangan 2" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi4.jpeg" alt="Kenangan 3" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi3.jpeg" alt="Kenangan 4" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi2.jpeg" alt="Kenangan 5" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi5.jpeg" alt="Kenangan 6" class="w-full h-40 object-cover rounded-lg shadow-md">
+				</div>
+			</div>
+
+			<div class="text-center animate-on-scroll">
+				<p class="text-lg text-gray-700 mb-4">Merupakan suatu kehormatan dan kebahagiaan bagi saya apabila Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+				<p class="text-gray-600">Atas perhatiannya, kami ucapkan terima kasih.</p>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div class="bg-gray-100 text-center py-4 animate-on-scroll">
+			<p class="text-gray-600">Susi Zahara S.Si❤️</p>
+		</div>
+	</div>
+
+	<!-- YouTube Audio Embed -->
+	<iframe id="ytPlayer" width="0" height="0" src="https://www.youtube.com/embed/qfVuRQX0ydQ?autoplay=1&loop=1&playlist=qfVuRQX0ydQ&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const cover = document.getElementById('cover');
+			const invitation = document.getElementById('invitation');
+			const openBtn = document.getElementById('openBtn');
+			const ytPlayer = document.getElementById('ytPlayer');
+
+			// Open invitation
+			openBtn.addEventListener('click', function() {
+				cover.classList.add('hidden');
+				invitation.classList.add('show');
+				// YouTube autoplay might be blocked, but iframe is ready
+			});
+
+			// Countdown Timer
+			function updateCountdown() {
+				const targetDate = new Date('2025-11-22 13:00').getTime();
+				const now = new Date().getTime();
+				const distance = targetDate - now;
+
+				if (distance > 0) {
+					const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+					document.getElementById('days').innerText = days.toString().padStart(2, '0');
+					document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+					document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+					document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+				} else {
+					document.getElementById('countdown').innerHTML = '<div class="col-span-4 text-2xl font-bold text-pink-600">Wisuda Sudah Dimulai!</div>';
+				}
+			}
+
+			updateCountdown();
+			setInterval(updateCountdown, 1000);
+
+			// Scroll animations
+			const observerOptions = {
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			};
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('in-view');
+					}
+				});
+			}, observerOptions);
+
+			document.querySelectorAll('.animate-on-scroll').forEach(el => {
+				observer.observe(el);
+			});
+		});
+	</script>
+</body>
+</html>
