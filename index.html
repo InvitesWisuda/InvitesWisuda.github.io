@@ -213,15 +213,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 
-	<!-- YouTube Audio Embed -->
-	<iframe id="ytPlayer" width="0" height="0" src="https://www.youtube.com/embed/qfVuRQX0ydQ?autoplay=1&loop=1&playlist=qfVuRQX0ydQ&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+	<!-- Audio Embed -->
+	<audio id="bgMusic" autoplay loop style="display: none;">
+		<source src="[MV] Weeekly(위클리) _ After School.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const cover = document.getElementById('cover');
 			const invitation = document.getElementById('invitation');
 			const openBtn = document.getElementById('openBtn');
-			const ytPlayer = document.getElementById('ytPlayer');
+			const bgMusic = document.getElementById('bgMusic');
 
 			// Open invitation
 			openBtn.addEventListener('click', function() {
