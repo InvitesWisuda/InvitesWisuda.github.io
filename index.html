@@ -225,12 +225,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			const invitation = document.getElementById('invitation');
 			const openBtn = document.getElementById('openBtn');
 			const bgMusic = document.getElementById('bgMusic');
+			const playMusicBtn = document.getElementById('playMusicBtn');
+
+			// Check if autoplay is supported
+			let autoplaySupported = false;
+			const playPromise = bgMusic.play();
+			if (playPromise !== undefined) {
+				playPromise.then(() => {
+					autoplaySupported = true;
+				}).catch(() => {
+					autoplaySupported = false;
+					playMusicBtn.style.display = 'block';
+				});
+			}
+
+			// Play music button for mobile
+			playMusicBtn.addEventListener('click', function() {
+				bgMusic.play();
+				playMusicBtn.style.display = 'none';
+			});
 
 			// Open invitation
 			openBtn.addEventListener('click', function() {
 				cover.classList.add('hidden');
 				invitation.classList.add('show');
-				// YouTube autoplay might be blocked, but iframe is ready
+				// Try to play music when opening invitation
+				if (!autoplaySupported) {
+					const playPromise = bgMusic.play();
+					if (playPromise !== undefined) {
+						playPromise.catch(() => {
+							playMusicBtn.style.display = 'block';
+						});
+					}
+				}
 			});
 
 			// Countdown Timer
