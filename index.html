@@ -221,86 +221,134 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-			const cover = document.getElementById('cover');
-			const invitation = document.getElementById('invitation');
-			const openBtn = document.getElementById('openBtn');
-			const bgMusic = document.getElementById('bgMusic');
-			const playMusicBtn = document.getElementById('playMusicBtn');
+			try {
+				const cover = document.getElementById('cover');
+				const invitation = document.getElementById('invitation');
+				const openBtn = document.getElementById('openBtn');
+				const bgMusic = document.getElementById('bgMusic');
+				const playMusicBtn = document.getElementById('playMusicBtn');
 
-			// Check if autoplay is supported
-			let autoplaySupported = false;
-			const playPromise = bgMusic.play();
-			if (playPromise !== undefined) {
-				playPromise.then(() => {
-					autoplaySupported = true;
-				}).catch(() => {
-					autoplaySupported = false;
-					playMusicBtn.style.display = 'block';
-				});
-			}
+				// Ensure elements exist
+				if (!cover || !invitation || !openBtn) {
+					console.error('Required elements not found');
+					return;
+				}
 
-			// Play music button for mobile
-			playMusicBtn.addEventListener('click', function() {
-				bgMusic.play();
-				playMusicBtn.style.display = 'none';
-			});
-
-			// Open invitation
-			openBtn.addEventListener('click', function() {
-				cover.classList.add('hidden');
-				invitation.classList.add('show');
-				// Try to play music when opening invitation
-				if (!autoplaySupported) {
+				// Check if autoplay is supported
+				let autoplaySupported = false;
+				if (bgMusic) {
 					const playPromise = bgMusic.play();
 					if (playPromise !== undefined) {
-						playPromise.catch(() => {
-							playMusicBtn.style.display = 'block';
+						playPromise.then(() => {
+							autoplaySupported = true;
+						}).catch(() => {
+							autoplaySupported = false;
+							if (playMusicBtn) {
+								playMusicBtn.style.display = 'block';
+							}
 						});
 					}
 				}
-			});
 
-			// Countdown Timer
-			function updateCountdown() {
-				const targetDate = new Date('2025-11-22 13:00').getTime();
-				const now = new Date().getTime();
-				const distance = targetDate - now;
-
-				if (distance > 0) {
-					const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-					const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-					const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-					const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-					document.getElementById('days').innerText = days.toString().padStart(2, '0');
-					document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-					document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-					document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-				} else {
-					document.getElementById('countdown').innerHTML = '<div class="col-span-4 text-2xl font-bold text-pink-600">Wisuda Sudah Dimulai!</div>';
+				// Play music button for mobile
+				if (playMusicBtn) {
+					playMusicBtn.addEventListener('click', function() {
+						if (bgMusic) {
+							bgMusic.play();
+							playMusicBtn.style.display = 'none';
+						}
+					});
 				}
-			}
 
-			updateCountdown();
-			setInterval(updateCountdown, 1000);
-
-			// Scroll animations
-			const observerOptions = {
-				threshold: 0.1,
-				rootMargin: '0px 0px -50px 0px'
-			};
-
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add('in-view');
+				// Open invitation
+				openBtn.addEventListener('click', function() {
+					cover.classList.add('hidden');
+					invitation.classList.add('show');
+					// Try to play music when opening invitation
+					if (!autoplaySupported && bgMusic) {
+						const playPromise = bgMusic.play();
+						if (playPromise !== undefined) {
+							playPromise.catch(() => {
+								if (playMusicBtn) {
+									playMusicBtn.style.display = 'block';
+								}
+							});
+						}
 					}
 				});
-			}, observerOptions);
 
-			document.querySelectorAll('.animate-on-scroll').forEach(el => {
-				observer.observe(el);
-			});
+				// Countdown Timer
+				function updateCountdown() {
+					try {
+						const targetDate = new Date('2025-11-22 13:00').getTime();
+						const now = new Date().getTime();
+						const distance = targetDate - now;
+
+						if (distance > 0) {
+							const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+							const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+							const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+							const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+							const daysEl = document.getElementById('days');
+							const hoursEl = document.getElementById('hours');
+							const minutesEl = document.getElementById('minutes');
+							const secondsEl = document.getElementById('seconds');
+
+							if (daysEl) daysEl.innerText = days.toString().padStart(2, '0');
+							if (hoursEl) hoursEl.innerText = hours.toString().padStart(2, '0');
+							if (minutesEl) minutesEl.innerText = minutes.toString().padStart(2, '0');
+							if (secondsEl) secondsEl.innerText = seconds.toString().padStart(2, '0');
+						} else {
+							const countdownEl = document.getElementById('countdown');
+							if (countdownEl) {
+								countdownEl.innerHTML = '<div class="col-span-4 text-2xl font-bold text-pink-600">Wisuda Sudah Dimulai!</div>';
+							}
+						}
+					} catch (error) {
+						console.error('Error updating countdown:', error);
+					}
+				}
+
+				updateCountdown();
+				setInterval(updateCountdown, 1000);
+
+				// Scroll animations
+				try {
+					const observerOptions = {
+						threshold: 0.1,
+						rootMargin: '0px 0px -50px 0px'
+					};
+
+					const observer = new IntersectionObserver((entries) => {
+						entries.forEach(entry => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('in-view');
+							}
+						});
+					}, observerOptions);
+
+					document.querySelectorAll('.animate-on-scroll').forEach(el => {
+						observer.observe(el);
+					});
+				} catch (error) {
+					console.error('Error setting up scroll animations:', error);
+				}
+
+			} catch (error) {
+				console.error('Error initializing page:', error);
+				// Fallback: ensure cover is visible and button works
+				const cover = document.getElementById('cover');
+				const invitation = document.getElementById('invitation');
+				const openBtn = document.getElementById('openBtn');
+
+				if (cover && invitation && openBtn) {
+					openBtn.addEventListener('click', function() {
+						cover.classList.add('hidden');
+						invitation.classList.add('show');
+					});
+				}
+			}
 		});
 	</script>
 </body>
