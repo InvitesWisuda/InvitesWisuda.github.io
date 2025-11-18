@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
 <html lang="id">
 <head>
 	<meta charset="utf-8">
@@ -143,30 +145,30 @@
 					<img src="Susi1.jpeg" alt="Foto Susi" class="w-56 h-56 rounded-full object-cover border-4 border-pink-300 shadow-lg pulse">
 					<div class="absolute inset-0 rounded-full border-4 border-pink-500 animate-ping"></div>
 				</div>
-				<h2 class="text-3xl font-semibold text-gray-800 mt-4 mb-4">{{nama}}</h2>
-				<p class="text-lg text-gray-600 mb-2">{{program_studi}}</p>
-				<p class="text-lg text-gray-600">{{universitas}}</p>
+				<h2 class="text-3xl font-semibold text-gray-800 mt-4 mb-4">Wisuda SUSI ZAHARA S.Si</h2>
+				<p class="text-lg text-gray-600 mb-2">Program Studi Fisika</p>
+				<p class="text-lg text-gray-600">Universitas Negeri Andalas</p>
 			</div>
 
 			<!-- Countdown Timer -->
 			<div class="mb-8 animate-on-scroll">
 				<h3 class="text-2xl font-semibold text-gray-800 mb-6">Hitung Mundur Wisuda</h3>
-				<div class="grid grid-cols-4 gap-4 max-w-lg mx-auto text-center" id="countdown">
+				<div class="grid grid-cols-4 gap-4 max-w-lg mx-auto" id="countdown">
 					<div class="countdown-item">
-						<div class="text-3xl font-bold text-black" id="days">00</div>
-						<div class="text-sm text-black-100">Hari</div>
+						<div class="text-3xl font-bold text-black text-center" id="days">00</div>
+						<div class="text-sm text-black-100 text-center">Hari</div>
 					</div>
 					<div class="countdown-item">
-						<div class="text-3xl font-bold text-black" id="hours">00</div>
-						<div class="text-sm text-black-100">Jam</div>
+						<div class="text-3xl font-bold text-black text-center" id="hours">00</div>
+						<div class="text-sm text-black-100 text-center">Jam</div>
 					</div>
 					<div class="countdown-item">
-						<div class="text-3xl font-bold text-black" id="minutes">00</div>
-						<div class="text-sm text-black-100">Menit</div>
+						<div class="text-3xl font-bold text-black text-center" id="minutes">00</div>
+						<div class="text-sm text-black-100 text-center">Menit</div>
 					</div>
 					<div class="countdown-item">
-						<div class="text-3xl font-bold text-black" id="seconds">00</div>
-						<div class="text-sm text-black-100">Detik</div>
+						<div class="text-3xl font-bold text-black text-center" id="seconds">00</div>
+						<div class="text-sm text-black-100 text-center">Detik</div>
 					</div>
 				</div>
 			</div>
@@ -174,27 +176,15 @@
 			<div class="grid md:grid-cols-2 gap-6 mb-8">
 				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tanggal</h3>
-					<p class="text-gray-600">{{tanggal}}</p>
+					<p class="text-gray-600">22 November 2025</p>
 				</div>
 				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-right">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Waktu</h3>
-					<p class="text-gray-600">{{waktu}}</p>
+					<p class="text-gray-600">13.00 - 16.00</p>
 				</div>
 				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tempat</h3>
-					<p class="text-gray-600">{{tempat}}</p>
-				</div>
-				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-right">
-					<h3 class="text-xl font-semibold text-gray-800 mb-2">Alamat</h3>
-					<p class="text-gray-600">{{alamat}}</p>
-				</div>
-			</div>
-
-			<!-- Events -->
-			<div class="mb-8 animate-on-scroll">
-				<h3 class="text-2xl font-semibold text-gray-800 mb-6">Agenda Acara</h3>
-				<div class="bg-pink-50 p-6 rounded-lg">
-					<p class="text-gray-600">{{agenda}}</p>
+					<p class="text-gray-600">FMIPA</p>
 				</div>
 			</div>
 
@@ -202,29 +192,29 @@
 			<div class="mb-8 animate-on-scroll">
 				<h3 class="text-2xl font-semibold text-gray-800 mb-6">Galeri Kenangan</h3>
 				<div class="grid grid-cols-2 md:grid-cols-3 gap-4 photo-gallery">
-					<img src="{{foto1}}" alt="Kenangan 1" class="w-full h-40 object-cover rounded-lg shadow-md">
-					<img src="{{foto2}}" alt="Kenangan 2" class="w-full h-40 object-cover rounded-lg shadow-md">
-					<img src="{{foto3}}" alt="Kenangan 3" class="w-full h-40 object-cover rounded-lg shadow-md">
-					<img src="{{foto4}}" alt="Kenangan 4" class="w-full h-40 object-cover rounded-lg shadow-md">
-					<img src="{{foto5}}" alt="Kenangan 5" class="w-full h-40 object-cover rounded-lg shadow-md">
-					<img src="{{foto6}}" alt="Kenangan 6" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi1.jpeg" alt="Kenangan 1" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi6.jpeg" alt="Kenangan 2" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi4.jpeg" alt="Kenangan 3" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi3.jpeg" alt="Kenangan 4" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi2.jpeg" alt="Kenangan 5" class="w-full h-40 object-cover rounded-lg shadow-md">
+					<img src="Susi5.jpeg" alt="Kenangan 6" class="w-full h-40 object-cover rounded-lg shadow-md">
 				</div>
 			</div>
 
 			<div class="text-center animate-on-scroll">
-				<p class="text-lg text-gray-700 mb-4">{{pesan}}</p>
-				<p class="text-gray-600">{{penutup}}</p>
+				<p class="text-lg text-gray-700 mb-4">Merupakan suatu kehormatan dan kebahagiaan bagi saya apabila Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+				<p class="text-gray-600">Atas perhatiannya, kami ucapkan terima kasih.</p>
 			</div>
 		</div>
 
 		<!-- Footer -->
 		<div class="bg-gray-100 text-center py-4 animate-on-scroll">
-			<p class="text-gray-600">{{nama}} ❤️</p>
+			<p class="text-gray-600">Susi Zahara S.Si❤️</p>
 		</div>
 	</div>
 
 	<!-- YouTube Audio Embed -->
-	<iframe id="ytPlayer" width="0" height="0" src="https://www.youtube.com/embed/{{youtube_id}}?autoplay=1&loop=1&playlist={{youtube_id}}&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+	<iframe id="ytPlayer" width="0" height="0" src="https://www.youtube.com/embed/qfVuRQX0ydQ?autoplay=1&loop=1&playlist=qfVuRQX0ydQ&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
@@ -242,7 +232,7 @@
 
 			// Countdown Timer
 			function updateCountdown() {
-				const targetDate = new Date('{{tanggal_target}} {{waktu_target}}').getTime();
+				const targetDate = new Date('2025-11-22 13:00').getTime();
 				const now = new Date().getTime();
 				const distance = targetDate - now;
 
