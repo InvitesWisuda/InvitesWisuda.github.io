@@ -6,8 +6,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Undangan Wisuda - Susi Zahara</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<style>
+
+		body {
+  			font-family: "Poppins", sans-serif;
+		}
+
 		.bg-gradient-custom {
 			background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
 		}
@@ -133,8 +141,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="invitation" class="invitation-content max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden mt-8 mb-8">
 		<!-- Header -->
 		<div class="bg-pink-500 text-white text-center py-8 float animate-on-scroll">
-			<h1 class="text-4xl font-bold mb-2">Graduation Party</h1>
-			<p class="text-xl">Dengan hormat mengundang Anda untuk menghadiri</p>
+			<p class="text-xl">YOU ARE INVITED TO</p>
+			<h1 class="text-4xl font-bold mb-2">GRADUATION PARTY</h1>
 		</div>
 
 		<!-- Content -->
@@ -146,8 +154,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="absolute inset-0 rounded-full border-4 border-pink-500 animate-ping"></div>
 				</div>
 				<h2 class="text-3xl font-semibold text-gray-800 mt-4 mb-4">SUSI ZAHARA S.Si</h2>
-				<p class="text-lg text-gray-600 mb-2">Program Studi Fisika</p>
-				<p class="text-lg text-gray-600">Universitas Andalas</p>
+				<p class="text-md font-bold text-gray-600 mb-2">💫NAVIGASI SELESAI, ORBIT BERUBAH💫</p>
+				<p class="text-lg text-gray-600">🪐Koordinat waktu dan tempat🪐 <br>
+Setelah perjalanan panjang melintasi alam semesta akademis, saya ingin merayakan Supernova pencapaian ini bersama kamu pada:</p>
 			</div>
 
 			<!-- Countdown Timer -->
@@ -174,15 +183,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 
 			<div class="grid md:grid-cols-2 gap-6 mb-8">
-				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
+				<div class="bg-pink-100 p-6 rounded-lg animate-on-scroll slide-in-left">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tanggal</h3>
 					<p class="text-gray-600">22 November 2025</p>
 				</div>
-				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-right">
+				<div class="bg-pink-100 p-6 rounded-lg animate-on-scroll slide-in-right">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Waktu</h3>
 					<p class="text-gray-600">13.00 - 16.00</p>
 				</div>
-				<div class="bg-pink-50 p-6 rounded-lg animate-on-scroll slide-in-left">
+				<div class="bg-pink-100 p-6 rounded-lg animate-on-scroll slide-in-left">
 					<h3 class="text-xl font-semibold text-gray-800 mb-2">Tempat</h3>
 					<p class="text-gray-600">FMIPA</p>
 				</div>
@@ -201,10 +210,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 
-
 			<div class="text-center animate-on-scroll">
-				<p class="text-lg text-gray-700 mb-4">Merupakan suatu kehormatan dan kebahagiaan bagi saya apabila Saudara/i berkenan hadir untuk memberikan doa restu.</p>
-				<p class="text-gray-600">Atas perhatiannya, kami ucapkan terima kasih.</p>
+				<p class="text-lg text-gray-700 mb-4" id="typewriter-text" style="font-family: 'Inter', sans-serif;">Setelah melewati Lintasan Ekliptika dan menggunakan Rasi Bintang sebagai panduan Navigasi, Alhamdulillah akhirnya saya mencapai Titik Perigee (pencapaian terdekat) dari misi perjalanan menjelajahi galaksi ini. Melalui proses Fusi Nuklir Intelektual yang intensif di dalam Nebula Akademik dan kini siap melakukan Transisi Fase dari Bintang Muda menjadi Bintang Urutan Utama <i>(Main Sequence Star)</i> yang stabil dan bersinar.
+Dengan penuh rasa syukur dan hati yang bersinar layaknya bintang paling terang, saya mengundang kamu untuk menyaksikan momen bersejarah saya menuju orbit karier dan menjelajahi galaksi baru selanjutnya. <i class="font-semibold">"Dari bintang yang sama, Memulai perjalanan yang berbeda".</i>
+Kehadiran kamu akan menjadi spektrum warna paling indah dalam peta perayaan ini.</p>
+				<p class="text-gray-600" id="closing-text" style="opacity: 0;">Sampai bertemu di bawah gugusan bintang✨</p>
 			</div>
 		</div>
 
@@ -311,8 +321,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 				}
 
-				updateCountdown();
+					updateCountdown();
 				setInterval(updateCountdown, 1000);
+
+				// Typewriter effect with HTML support
+				function typeWriter(text, element, speed = 50) {
+					let i = 0;
+					element.innerHTML = '';
+					element.style.opacity = '1';
+
+					function type() {
+						if (i < text.length) {
+							element.innerHTML = text.substring(0, i + 1);
+							i++;
+							setTimeout(type, speed);
+						} else {
+							// Show closing text after typewriter finishes
+							setTimeout(() => {
+								const closingText = document.getElementById('closing-text');
+								if (closingText) {
+									closingText.style.transition = 'opacity 1s ease-in-out';
+									closingText.style.opacity = '1';
+								}
+							}, 500);
+						}
+					}
+					type();
+				}
+
+				// Second typewriter effect
+				function typeWriter2(text, element, speed = 50) {
+					let i = 0;
+					element.innerHTML = '';
+					element.style.opacity = '1';
+
+					function type() {
+						if (i < text.length) {
+							element.innerHTML = text.substring(0, i + 1);
+							i++;
+							setTimeout(type, speed);
+						}
+					}
+					type();
+				}
+
+				// Start typewriter when element comes into view
+				const typewriterObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const typewriterText = document.getElementById('typewriter-text');
+							if (typewriterText && !typewriterText.hasAttribute('data-typed')) {
+								typewriterText.setAttribute('data-typed', 'true');
+								const text = "<p class=\"text-lg text-gray-700 mb-4\" style=\"font-family: 'Inter', sans-serif;\">Setelah melewati Lintasan Ekliptika dan menggunakan Rasi Bintang sebagai panduan Navigasi, Alhamdulillah akhirnya saya mencapai Titik Perigee (pencapaian terdekat) dari misi perjalanan menjelajahi galaksi ini. Melalui proses Fusi Nuklir Intelektual yang intensif di dalam Nebula Akademik dan kini siap melakukan Transisi Fase dari Bintang Muda menjadi Bintang Urutan Utama <i>(Main Sequence Star)</i> yang stabil dan bersinar.<br><br>Dengan penuh rasa syukur dan hati yang bersinar layaknya bintang paling terang, saya mengundang kamu untuk menyaksikan momen bersejarah saya menuju orbit karier dan menjelajahi galaksi baru selanjutnya. <i class=\"font-semibold\">\"Dari bintang yang sama, Memulai perjalanan yang berbeda\".</i><br><br>Kehadiran kamu akan menjadi spektrum warna paling indah dalam peta perayaan ini.</p>";
+								typeWriter(text, typewriterText, 50);
+							}
+						}
+					});
+				}, { threshold: 0.5 });
+
+				const typewriterElement = document.querySelector('.animate-on-scroll');
+				if (typewriterElement) {
+					typewriterObserver.observe(typewriterElement);
+				}
 
 				// Scroll animations
 				try {
